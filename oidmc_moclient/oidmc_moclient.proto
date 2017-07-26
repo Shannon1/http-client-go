@@ -1,0 +1,16 @@
+syntax = "proto3";
+option optimize_for = LITE_RUNTIME;
+
+package oidmc.moclient;
+
+message MoClientNotifyOrderReq {
+    uint32 order_id     = 1; //订单id号，对应tb_user_order中id字段
+    uint32 user_id      = 2; //用户账号。对应tb_account中id
+    string user_name    = 3; //用户帐号名。对应tb_account中username
+    string sign         = 4; //签名。md5(salt0 + order_id + salt1 + user_id + salt2 + user_name + salt3)
+}
+
+message MoClientNotifyOrderRes {
+    uint32 err          = 1; //错误码
+    string err_msg      = 2; //错误信息
+}
